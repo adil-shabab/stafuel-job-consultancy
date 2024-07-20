@@ -1,0 +1,103 @@
+{% load static %}
+<div class="hp-sidebar hp-bg-color-black-20 hp-bg-color-dark-90 border-end border-black-40 hp-border-color-dark-80">
+    <div class="hp-sidebar-container">
+        <div class="hp-sidebar-header-menu">
+            <div class="row justify-content-between align-items-end mx-0">
+                <div class="w-auto px-0 hp-sidebar-collapse-button hp-sidebar-visible">
+                    <div class="hp-cursor-pointer">
+                        <svg width="8" height="15" viewBox="0 0 8 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.91102 1.73796L0.868979 4.78L0 3.91102L3.91102 0L7.82204 3.91102L6.95306 4.78L3.91102 1.73796Z" fill="#B2BEC3"></path>
+                            <path d="M3.91125 12.0433L6.95329 9.00125L7.82227 9.87023L3.91125 13.7812L0.000224113 9.87023L0.869203 9.00125L3.91125 12.0433Z" fill="#B2BEC3"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="w-auto px-0">
+                    <div class="hp-header-logo d-flex align-items-center">
+                        <a href="index.html" class="position-relative">
+                            <img src="{% static 'images/stafuel-logo.png' %}" alt="" class="logo__img">
+                        </a>
+
+                    </div>
+                </div>
+
+                <div class="w-auto px-0 hp-sidebar-collapse-button hp-sidebar-hidden">
+                    <div class="hp-cursor-pointer mb-10">
+                        <svg width="8" height="15" viewBox="0 0 8 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.91102 1.73796L0.868979 4.78L0 3.91102L3.91102 0L7.82204 3.91102L6.95306 4.78L3.91102 1.73796Z" fill="#B2BEC3"></path>
+                            <path d="M3.91125 12.0433L6.95329 9.00125L7.82227 9.87023L3.91125 13.7812L0.000224113 9.87023L0.869203 9.00125L3.91125 12.0433Z" fill="#B2BEC3"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <ul>
+                <li>
+                    <div class="menu-title">DASHBOARDS</div>
+
+                    <ul>
+                        <li>
+                            <a href="dashboard-analytics.html">
+                                <div class="tooltip-item in-active" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="Analytics" aria-label="Analytics"></div>
+
+                                <span>
+                                    <span class="submenu-item-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                            <path d="M8.97 22h6c5 0 7-2 7-7V9c0-5-2-7-7-7h-6c-5 0-7 2-7 7v6c0 5 2 7 7 7Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path d="m1.97 12.7 6-.02c.75 0 1.59.57 1.87 1.27l1.14 2.88c.26.65.67.65.93 0l2.29-5.81c.22-.56.63-.58.91-.05l1.04 1.97c.31.59 1.11 1.07 1.77 1.07h4.06" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </span>
+
+                                    <span>Analytics</span>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="javascript:;" class="submenu-item">
+                                <span>
+                                    <span class="submenu-item-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                            <path d="M4.26 11.02v4.97c0 1.82 0 1.82 1.72 2.98l4.73 2.73c.71.41 1.87.41 2.58 0l4.73-2.73c1.72-1.16 1.72-1.16 1.72-2.98v-4.97c0-1.82 0-1.82-1.72-2.98l-4.73-2.73c-.71-.41-1.87-.41-2.58 0L5.98 8.04C4.26 9.2 4.26 9.2 4.26 11.02Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                            <path d="M17.5 7.63V5c0-2-1-3-3-3h-5c-2 0-3 1-3 3v2.56M12.63 10.99l.57.89c.09.14.29.28.44.32l1.02.26c.63.16.8.7.39 1.2l-.67.81c-.1.13-.18.36-.17.52l.06 1.05c.04.65-.42.98-1.02.74l-.98-.39a.863.863 0 0 0-.55 0l-.98.39c-.6.24-1.06-.1-1.02-.74l.06-1.05c.01-.16-.07-.4-.17-.52l-.67-.81c-.41-.5-.24-1.04.39-1.2l1.02-.26c.16-.04.36-.19.44-.32l.57-.89c.36-.54.92-.54 1.27 0Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                        </svg>
+                                    </span>
+
+                                    <span>E-commerce</span>
+                                </span>
+
+                                <div class="menu-arrow"></div>
+                            </a>
+
+                            <ul class="submenu-children" data-level="1">
+                                <li>
+                                    <a href="app-ecommerce-shop.html">
+                                        <span>Shop</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="app-ecommerce-wishlist.html">
+                                        <span>Wishlist</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="app-ecommerce-product-detail.html">
+                                        <span>Product Detail</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="app-ecommerce-checkout.html">
+                                        <span>Checkout</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
