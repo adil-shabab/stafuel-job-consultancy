@@ -1,7 +1,7 @@
 {% extends 'backend/base.html' %}
 {% load static %}
 
-{% block title %}Department | Dashboard{% endblock %}
+{% block title %}Jobs | Dashboard{% endblock %}
 
 {% block content %}
 
@@ -10,8 +10,8 @@
     <div class="col-12">
         <div class="row align-items-center justify-content-between g-24">
             <div class="col-12 col-md-6">
-                <h3>Departments </h3>
-                <p class="hp-p1-body mb-0">Here is the list of all Departments</p>
+                <h3>Jobs </h3>
+                <p class="hp-p1-body mb-0">Here is the list of all Jobs</p>
             </div>
         </div>
     </div>
@@ -27,7 +27,9 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="d-flex align-items-center justify-content-between mb-32">
-                                            <h5 class="mb-0">List of Departments</h5>
+                                            <h5 class="mb-0">List of Jobs</h5>
+
+                                            <input class="search__input" type="text" placeholder="Search for Jobs">
                                         </div>
 
                                         <div class="table-responsive">
@@ -38,13 +40,16 @@
                                                             <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">SI NO</span>
                                                         </th>
                                                         <th style="min-width: 180px;">
-                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">Department Name</span>
+                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">Job Title</span>
                                                         </th>
                                                         <th>
-                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">Opening positions</span>
+                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">Department</span>
                                                         </th>
                                                         <th>
-                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">Icon</span>
+                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">location</span>
+                                                        </th>
+                                                        <th class="">
+                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">View Application</span>
                                                         </th>
                                                         <th class="">
                                                             <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">Status</span>
@@ -56,24 +61,28 @@
                                                 </thead>
 
                                                 <tbody>
-                                                    {% for department in departments %}
+                                                    {% for job in jobs %}
                                                         <tr>
                                                             <td class="ps-0">
                                                                 <span class="mb-0 fw-medium text-black-100 hp-text-color-dark-0">{{ forloop.counter }}</span>
                                                             </td>
                                                             <td>
-                                                                <span class="mb-0 text-black-80 hp-text-color-dark-30">{{ department.name }}</span>
+                                                                <span class="mb-0 text-black-80 hp-text-color-dark-30">{{ job.title }}</span>
                                                             </td>
                                                             <td>
-                                                                <span class="mb-0 text-black-80 hp-text-color-dark-30">{{ department.openings }} Open Positions</span>
+                                                                <span class="mb-0 text-black-80 hp-text-color-dark-30">{{ job.department.name }}</span>
                                                             </td>
                                                             <td>
-                                                                <span class="badge bg-success-4 hp-bg-dark-success text-success border-success">
-                                                                    <span style="color: black; font-size: 25px;" class="{{ department.icon }}"></span>
-                                                                </span>
+                                                                <span class="mb-0 text-black-80 hp-text-color-dark-30">{{ job.location }}</span>
                                                             </td>
                                                             <td>
-                                                                {% if department.status == 'active' %}
+                                                                <a href="">
+                                                                    <span class="btn_view mb-0 hp-text-color-dark-30">View Applications (10)</span>
+                                                                </a>
+                                                            </td>
+
+                                                            <td>
+                                                                {% if job.status == 'active' %}
                                                                 <span class="badge bg-success-4 hp-bg-dark-success text-success border-success">
                                                                     <span>Active</span>
                                                                 </span>
@@ -85,10 +94,10 @@
                                                             </td>
                                                             <td>
                                                                 <div class="d_flex_icons">
-                                                                    <a href="{% url 'department_update' department.slug %}">
+                                                                    <a href="{% url 'job-update' job.slug %}">
                                                                         <span class="fa-regular fa-pen-to-square"></span>
                                                                     </a>
-                                                                    <a href="#" onclick="deleteDepartment('{{ department.slug }}')">
+                                                                    <a href="#" onclick="deleteJob('{{ job.slug }}')">
                                                                         <span class="fa-solid fa-trash"></span>
                                                                     </a>
                                                                 </div>
@@ -100,13 +109,11 @@
                                             </table>
 
                                             
-                                            {% if departments %}
-                                            {% else %}
-                                            <div class="empty_view order-5">
+
+                                            <div class="empty_view d-none">
                                                 <img src="{% static 'images/empty.jpg' %}" alt="">
-                                                <h4>No Department Found</h4>
+                                                <h4>No Jobs Found</h4>
                                             </div>  
-                                            {% endif %}
                                                 
                                         </div>
                                     </div>
@@ -128,11 +135,11 @@
 
 {% block script %}
     <script>
-        document.querySelector('.department').classList.add('active')
+        document.querySelector('.jobs').classList.add('active')
 
         
-        function deleteDepartment(slug) {
-            const deleteUrl = `{% url 'department_delete' 'dummy_slug' %}`.replace('dummy_slug', slug);
+        function deleteJob(slug) {
+            const deleteUrl = `{% url 'job-delete' 'dummy_slug' %}`.replace('dummy_slug', slug);
             Swal.fire({
                 title: "Are you sure?",
                 text: "You won't be able to revert this!",
@@ -147,6 +154,37 @@
                 }
             });
         }
+
+        function checkSearch() {
+            const searchTerm = document.querySelector('.search__input').value.toLowerCase();
+            const jobs = document.querySelectorAll('tbody tr');
+
+            jobs.forEach(job => {
+                const title = job.querySelector('td:nth-child(2) span').textContent.toLowerCase();
+                const department = job.querySelector('td:nth-child(3) span').textContent.toLowerCase();
+                const location = job.querySelector('td:nth-child(4) span').textContent.toLowerCase();
+
+                if (title.includes(searchTerm) || department.includes(searchTerm) || location.includes(searchTerm)) {
+                    job.style.display = '';
+                } else {
+                    job.style.display = 'none';
+                }
+            });
+
+            // Check if any jobs are visible
+            const anyVisible = Array.from(jobs).some(job => job.style.display !== 'none');
+            const emptyView = document.querySelector('.empty_view');
+            
+            if (anyVisible) {
+                emptyView.classList.add('d-none');
+            } else {
+                emptyView.classList.remove('d-none');
+            }
+        }
+
+        // Search functionality
+        document.querySelector('.search__input').addEventListener('input', checkSearch);
+        checkSearch()
     </script>
 {% endblock script %}
     

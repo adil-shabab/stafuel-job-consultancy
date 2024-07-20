@@ -1,0 +1,121 @@
+{% extends 'backend/base.html' %}
+{% load static %}
+
+{% block title %}Job | Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="row mb-32 gy-32">
+    <div class="col-12">
+        <div class="row align-items-center justify-content-between g-24">
+            <div class="col-12 col-md-6">
+                <h3>{% if form.instance.pk %}Update Job{% else %}Create Job{% endif %}</h3>
+                <p class="hp-p1-body mb-0">Here you can {% if form.instance.pk %}update an existing{% else %}create a new{% endif %} job</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="row g-32">
+            <div class="col-12 col-lg-12">
+                <div class="row g-32">
+                    <div class="col-12">
+                        <div class="card hp-project-ecommerce-table-card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="d-flex align-items-center justify-content-between mb-32">
+                                            <h5 class="mb-0">{% if form.instance.pk %}Update Job{% else %}Create New Job{% endif %}</h5>
+                                        </div>
+
+                                        <form method="post" enctype="multipart/form-data" action="">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-md-6 input_div">
+                                                    <label for="id_title">Job Title</label>
+                                                    {{ form.title }}
+                                                </div>
+                                                <div class="col-md-6 input_div">
+                                                    <label for="id_department">Department</label>
+                                                    {{ form.department }}
+                                                </div>
+                                                <div class="col-md-6 input_div">
+                                                    <label for="id_location">Location</label>
+                                                    {{ form.location }}
+                                                </div>
+                                                <div class="col-md-6 input_div">
+                                                    <label for="id_salary">Salary</label>
+                                                    {{ form.salary }}
+                                                </div>
+                                                <div class="col-md-6 input_div">
+                                                    <label for="id_job_type">Job Type</label>
+                                                    {{ form.job_type }}
+                                                </div>
+                                                <div class="col-md-6 input_div">
+                                                    <label for="id_experience">Experience</label>
+                                                    {{ form.experience }}
+                                                </div>
+                                                <div class="col-md-12 input_div">
+                                                    <label for="id_job_description">Job Description</label>
+                                                    {{ form.job_description }}
+                                                </div>
+                                                <div class="col-md-12 input_div">
+                                                    <label for="id_skills_required">Skills Required</label>
+                                                    {{ form.skills_required }}
+                                                </div>
+                                            </div>
+                                    
+                                            <ul class="radio-switch">
+                                                <li class="radio-switch__item">
+                                                    <input checked class="radio-switch__input ri5-sr-only" type="radio" name="status" id="radio-1" value="active" {% if form.initial.status == "active" %}checked{% endif %}>
+                                                    <label class="radio-switch__label" for="radio-1">Active</label>
+                                                </li>
+                                                <li class="radio-switch__item">
+                                                    <input class="radio-switch__input ri5-sr-only" type="radio" name="status" id="radio-2" value="inactive" {% if form.initial.status == "inactive" %}checked{% endif %}>
+                                                    <label class="radio-switch__label" for="radio-2">Inactive</label>
+                                                    <div aria-hidden="true" class="radio-switch__marker"></div>
+                                                </li>
+                                            </ul>
+                                    
+                                            <div class="sub_btn">
+                                                <button type="submit">Submit</button>
+                                            </div>
+                                        </form>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+    
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
+
+    <script>
+        document.querySelector('.jobs').classList.add('active')
+    </script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var textarea = document.querySelector('textarea#id_skills_required');
+            var editor = CKEDITOR.replace(textarea.id);
+
+            editor.on('instanceReady', function() {
+                // Using a slight delay to ensure the element is available
+                setTimeout(function() {
+                    console.log(document.querySelector('#cke_notifications_area_id_skills_required'))
+                    document.querySelector('#cke_notifications_area_id_skills_required').classList.add('d-none')
+                }, 100);
+            });
+        });
+    </script>
+{% endblock script %}

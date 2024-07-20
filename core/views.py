@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import *
 from .forms import *
 from django.contrib import messages as msg
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 
 # Create your views here.
@@ -43,6 +45,51 @@ def department_delete(request, slug):
     return redirect('departments')
 
 
+
+
+class JobListView(ListView):
+    model = Job
+    template_name = 'backend/jobs.html'
+    context_object_name = 'jobs'
+
+
+class JobCreateView(CreateView):
+    model = Job
+    form_class = JobForm
+    template_name = 'backend/job-form.html'
+    success_url = reverse_lazy('job-list')
+
+    def form_valid(self, form):
+        form.instance.slug = slugify(form.instance.title)
+        response = super().form_valid(form)
+        msg.success(self.request, 'Job created successfully!')
+        return response
+
+class JobUpdateView(UpdateView):
+    model = Job
+    form_class = JobForm
+    template_name = 'backend/job-form.html'
+    success_url = reverse_lazy('job-list')
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
+
+    def form_valid(self, form):
+        form.instance.slug = slugify(form.instance.title)
+        response = super().form_valid(form)
+        msg.success(self.request, 'Job updated successfully!')
+        return response
+
+class JobDeleteView(DeleteView):
+    model = Job
+    template_name = 'jobs/job_confirm_delete.html'
+    success_url = reverse_lazy('job-list')
+    slug_field = 'slug'
+    slug_url_kwarg = 'slug'
+
+    def delete(self, request, *args, **kwargs):
+        response = super().delete(request, *args, **kwargs)
+        msg.success(self.request, 'Job deleted successfully!')
+        return response
 
 
 def dashboard(request):
