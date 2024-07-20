@@ -4,20 +4,17 @@
 {% block title %}Jobs | Dashboard{% endblock %}
 
 {% block content %}
-
-
 <div class="row mb-32 gy-32">
     <div class="col-12">
         <div class="row align-items-center justify-content-between g-24">
             <div class="col-12 col-md-6">
-                <h3>Jobs </h3>
+                <h3>Jobs</h3>
                 <p class="hp-p1-body mb-0">Here is the list of all Jobs</p>
             </div>
         </div>
     </div>
 
     <div class="col-12">
-
         <div class="row g-32">
             <div class="col-12 col-lg-12">
                 <div class="row g-32">
@@ -46,7 +43,7 @@
                                                             <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">Department</span>
                                                         </th>
                                                         <th>
-                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">location</span>
+                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">Location</span>
                                                         </th>
                                                         <th class="">
                                                             <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">View Application</span>
@@ -76,11 +73,10 @@
                                                                 <span class="mb-0 text-black-80 hp-text-color-dark-30">{{ job.location }}</span>
                                                             </td>
                                                             <td>
-                                                                <a href="">
-                                                                    <span class="btn_view mb-0 hp-text-color-dark-30">View Applications (10)</span>
+                                                                <a href="{% url 'view_application_job' job.slug %}">
+                                                                    <span class="btn_view mb-0 hp-text-color-dark-30">View Applications ( {{ job.application_count }} )</span>
                                                                 </a>
                                                             </td>
-
                                                             <td>
                                                                 {% if job.status == 'active' %}
                                                                 <span class="badge bg-success-4 hp-bg-dark-success text-success border-success">
@@ -104,17 +100,13 @@
                                                             </td>
                                                         </tr>
                                                     {% endfor %}
-    
                                                 </tbody>
                                             </table>
 
-                                            
-
-                                            <div class="empty_view d-none">
+                                            <div class="empty_view {% if jobs %}d-none{% endif %}">
                                                 <img src="{% static 'images/empty.jpg' %}" alt="">
                                                 <h4>No Jobs Found</h4>
                                             </div>  
-                                                
                                         </div>
                                     </div>
                                 </div>
@@ -127,64 +119,58 @@
     </div>
 </div>
 
-
-
 {% endblock %}
 
-
-
 {% block script %}
-    <script>
-        document.querySelector('.jobs').classList.add('active')
+<script>
+    document.querySelector('.jobs').classList.add('active');
 
-        
-        function deleteJob(slug) {
-            const deleteUrl = `{% url 'job-delete' 'dummy_slug' %}`.replace('dummy_slug', slug);
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = deleteUrl;
-                }
-            });
-        }
-
-        function checkSearch() {
-            const searchTerm = document.querySelector('.search__input').value.toLowerCase();
-            const jobs = document.querySelectorAll('tbody tr');
-
-            jobs.forEach(job => {
-                const title = job.querySelector('td:nth-child(2) span').textContent.toLowerCase();
-                const department = job.querySelector('td:nth-child(3) span').textContent.toLowerCase();
-                const location = job.querySelector('td:nth-child(4) span').textContent.toLowerCase();
-
-                if (title.includes(searchTerm) || department.includes(searchTerm) || location.includes(searchTerm)) {
-                    job.style.display = '';
-                } else {
-                    job.style.display = 'none';
-                }
-            });
-
-            // Check if any jobs are visible
-            const anyVisible = Array.from(jobs).some(job => job.style.display !== 'none');
-            const emptyView = document.querySelector('.empty_view');
-            
-            if (anyVisible) {
-                emptyView.classList.add('d-none');
-            } else {
-                emptyView.classList.remove('d-none');
+    function deleteJob(slug) {
+        const deleteUrl = `{% url 'job-delete' 'dummy_slug' %}`.replace('dummy_slug', slug);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = deleteUrl;
             }
-        }
+        });
+    }
 
-        // Search functionality
-        document.querySelector('.search__input').addEventListener('input', checkSearch);
-        checkSearch()
-    </script>
+    function checkSearch() {
+        const searchTerm = document.querySelector('.search__input').value.toLowerCase();
+        const jobs = document.querySelectorAll('tbody tr');
+
+        jobs.forEach(job => {
+            const title = job.querySelector('td:nth-child(2) span').textContent.toLowerCase();
+            const department = job.querySelector('td:nth-child(3) span').textContent.toLowerCase();
+            const location = job.querySelector('td:nth-child(4) span').textContent.toLowerCase();
+
+            if (title.includes(searchTerm) || department.includes(searchTerm) || location.includes(searchTerm)) {
+                job.style.display = '';
+            } else {
+                job.style.display = 'none';
+            }
+        });
+
+        // Check if any jobs are visible
+        const anyVisible = Array.from(jobs).some(job => job.style.display !== 'none');
+        const emptyView = document.querySelector('.empty_view');
+        
+        if (anyVisible) {
+            emptyView.classList.add('d-none');
+        } else {
+            emptyView.classList.remove('d-none');
+        }
+    }
+
+    // Search functionality
+    document.querySelector('.search__input').addEventListener('input', checkSearch);
+    checkSearch();
+</script>
 {% endblock script %}
-    

@@ -1,0 +1,114 @@
+{% extends 'backend/base.html' %}
+{% load static %}
+
+{% block title %}Application Details | Dashboard{% endblock %}
+
+
+{% block head %}
+<style>
+    .input_div {
+        margin-bottom: 1rem;
+    }
+    .form-control {
+        border: 1px solid #ced4da;
+        border-radius: .25rem;
+        padding: 15px;
+        word-wrap: break-word;
+    }
+</style>
+{% endblock head %}
+    
+
+{% block content %}
+<div class="row mb-32 gy-32">
+    <div class="col-12">
+        <div class="row align-items-center justify-content-between g-24">
+            <div class="col-12 col-md-6">
+                <h3>Application Details</h3>
+                <p class="hp-p1-body mb-0">Here you can view the details of the application</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="row g-32">
+            <div class="col-12 col-lg-12">
+                <div class="row g-32">
+                    <div class="col-12">
+                        <div class="card hp-project-ecommerce-table-card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="d-flex align-items-center justify-content-between mb-32">
+                                            <h5 class="mb-0">Application Details</h5>
+                                        </div>
+
+                                        <form method="post" action="#" enctype="multipart/form-data">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-md-6 input_div">
+                                                    <label for="id_job">Job</label>
+                                                    <input type="text" value="{{ application.job.title }}" readonly class="form-control">
+                                                </div>
+                                                <div class="col-md-6 input_div">
+                                                    <label for="id_department">Department</label>
+                                                    <input type="text" value="{{ application.department.name }}" readonly class="form-control">
+                                                </div>
+                                                <div class="col-md-6 input_div">
+                                                    <label for="id_name">Name</label>
+                                                    <input type="text" value="{{ application.name }}" readonly class="form-control">
+                                                </div>
+                                                <div class="col-md-6 input_div">
+                                                    <label for="id_email">Email</label>
+                                                    <input type="email" value="{{ application.email }}" readonly class="form-control">
+                                                </div>
+                                                <div class="col-md-6 input_div">
+                                                    <label for="id_mobile_number">Mobile Number</label>
+                                                    <input type="text" value="{{ application.mobile_number }}" readonly class="form-control">
+                                                </div>
+                                                <div class="col-md-6 input_div">
+                                                    <label for="id_experience">Experience</label>
+                                                    <input type="text" value="{{ application.get_experience_display }}" readonly class="form-control">
+                                                </div>
+                                                <div class="col-md-12 input_div">
+                                                    <label for="id_skills">Skills</label>
+                                                    <div id="id_skills" class="form-control" >{{ application.skills|safe }}</div>
+                                                </div>
+                                                <div class="col-md-12 input_div d-flex justify-content-start align-items-center">
+                                                    <label for="id_resume">Resume</label>
+                                                    <a href="{{ application.resume.url }}" target="_blank" class="btn btn_resume">View Resume</a>
+                                                </div>
+                                            </div>
+
+                                            <div class="sub_btn d-none">
+                                                <button type="submit">Submit</button>
+                                            </div>
+                                        </form>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script>
+    document.querySelector('.applications').classList.add('active');
+
+    function updateIcon() {
+        var iconInput = document.getElementById('id_icon');
+        var iconPreview = document.getElementById('iconPreview');
+        iconPreview.className = 'icon_ ' + iconInput.value;
+    }
+
+    document.getElementById('id_icon').addEventListener('input', updateIcon);
+    // Initial call to set the icon if there's a pre-filled value
+    updateIcon();
+</script>
+{% endblock script %}

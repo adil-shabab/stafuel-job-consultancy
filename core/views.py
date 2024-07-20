@@ -4,6 +4,8 @@ from .forms import *
 from django.contrib import messages as msg
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.db.models import Count
+
 
 
 # Create your views here.
@@ -47,11 +49,14 @@ def department_delete(request, slug):
 
 
 
+
 class JobListView(ListView):
     model = Job
     template_name = 'backend/jobs.html'
     context_object_name = 'jobs'
 
+    def get_queryset(self):
+        return Job.objects.annotate(application_count=Count('application')).order_by('-created_at')
 
 class JobCreateView(CreateView):
     model = Job
@@ -79,17 +84,73 @@ class JobUpdateView(UpdateView):
         msg.success(self.request, 'Job updated successfully!')
         return response
 
-class JobDeleteView(DeleteView):
-    model = Job
-    template_name = 'jobs/job_confirm_delete.html'
-    success_url = reverse_lazy('job-list')
-    slug_field = 'slug'
-    slug_url_kwarg = 'slug'
 
-    def delete(self, request, *args, **kwargs):
-        response = super().delete(request, *args, **kwargs)
-        msg.success(self.request, 'Job deleted successfully!')
-        return response
+
+def job_delete(request, slug):
+    job = get_object_or_404(Job, slug=slug)
+    job.delete()
+    msg.success(request,"Job Deleted Successfully")
+    return redirect('job-list')
+
+
+
+
+    
+class ApplicationListView(ListView):
+    model = Application
+    template_name = 'backend/applications.html'
+    context_object_name = 'applications'
+
+    def get_queryset(self):
+        return Application.objects.all().order_by('-created_at')
+
+        
+def view_application(request, slug):
+    application = Application.objects.get(slug=slug)
+    return render(request, 'backend/application-view.html', {'application': application})
+
+def view_application_job(request, slug):
+    job = Job.objects.get(slug=slug)
+    applications = Application.objects.filter(job=job)
+    return render(request, 'backend/application-job.html', {'applications': applications, 'job': job})
+
+# class ApplicationCreateView(CreateView):
+#     model = Application
+#     form_class = ApplicationForm
+#     template_name = 'backend/application-form.html'
+#     success_url = reverse_lazy('application-list')
+
+#     def form_valid(self, form):
+#         form.instance.slug = slugify(form.instance.name)
+#         response = super().form_valid(form)
+#         msg.success(self.request, 'Application created successfully!')
+#         return response
+
+# class ApplicationUpdateView(UpdateView):
+#     model = Application
+#     form_class = ApplicationForm
+#     template_name = 'backend/application-form.html'
+#     success_url = reverse_lazy('application-list')
+#     slug_field = 'slug'
+#     slug_url_kwarg = 'slug'
+
+#     def form_valid(self, form):
+#         form.instance.slug = slugify(form.instance.name)
+#         response = super().form_valid(form)
+#         msg.success(self.request, 'Application updated successfully!')
+#         return response
+
+# class ApplicationDeleteView(DeleteView):
+#     model = Application
+#     template_name = 'backend/application_confirm_delete.html'
+#     success_url = reverse_lazy('application-list')
+#     slug_field = 'slug'
+#     slug_url_kwarg = 'slug'
+
+#     def delete(self, request, *args, **kwargs):
+#         response = super().delete(request, *args, **kwargs)
+#         msg.success(self.request, 'Application deleted successfully!')
+#         return response
 
 
 def dashboard(request):

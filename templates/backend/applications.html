@@ -1,0 +1,147 @@
+{% extends 'backend/base.html' %}
+{% load static %}
+
+{% block title %}Applications | Dashboard{% endblock %}
+
+{% block content %}
+<div class="row mb-32 gy-32">
+    <div class="col-12">
+        <div class="row align-items-center justify-content-between g-24">
+            <div class="col-12 col-md-6">
+                <h3>Applications</h3>
+                <p class="hp-p1-body mb-0">Here is the list of all Applications</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+        <div class="row g-32">
+            <div class="col-12 col-lg-12">
+                <div class="row g-32">
+                    <div class="col-12">
+                        <div class="card hp-project-ecommerce-table-card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="d-flex align-items-center justify-content-between mb-32">
+                                            <h5 class="mb-0">List of Applications</h5>
+                                            <input class="search__input" type="text" placeholder="Search for Applications">
+                                        </div>
+
+                                        <div class="table-responsive">
+                                            <table class="table align-middle mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="min-width: 110px;">
+                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">SI NO</span>
+                                                        </th>
+                                                        <th style="min-width: 180px;">
+                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">Name</span>
+                                                        </th>
+                                                        <th>
+                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">Job Title</span>
+                                                        </th>
+                                                        <th>
+                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">Department</span>
+                                                        </th>
+                                                        <th class="">
+                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">Resume</span>
+                                                        </th>
+                                                        <th class="">
+                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">Action</span>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    {% for application in applications %}
+                                                        <tr>
+                                                            <td class="ps-0">
+                                                                <span class="mb-0 fw-medium text-black-100 hp-text-color-dark-0">{{ forloop.counter }}</span>
+                                                            </td>
+                                                            <td>
+                                                                <span class="mb-0 text-black-80 hp-text-color-dark-30">{{ application.name }}</span>
+                                                            </td>
+                                                            
+                                                            <td>
+                                                                <span class="mb-0 text-black-80 hp-text-color-dark-30">{{ application.job.title }}</span>
+                                                            </td>
+                                                            <td>
+                                                                <span class="mb-0 text-black-80 hp-text-color-dark-30">{{ application.department.name }}</span>
+                                                            </td>
+                                                            <td>
+                                                                <a href="{{ application.resume.url }}" target="_blank">
+                                                                    <span class="btn_view mb-0 hp-text-color-dark-30">View Resume</span>
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <div class="d_flex_icons">
+
+                                                                    <a href="{% url 'view_application' application.slug %}">
+                                                                        <span class="fa-regular fa-eye"></span>
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+
+                                            <div class="empty_view {% if applications %}d-none{% endif %}">
+                                                <img src="{% static 'images/empty.jpg' %}" alt="">
+                                                <h4>No Applications Found</h4>
+                                            </div>  
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script>
+    document.querySelector('.applications').classList.add('active');
+
+
+
+    function checkSearch() {
+        const searchTerm = document.querySelector('.search__input').value.toLowerCase();
+        const applications = document.querySelectorAll('tbody tr');
+
+        applications.forEach(application => {
+            const name = application.querySelector('td:nth-child(2) span').textContent.toLowerCase();
+            const email = application.querySelector('td:nth-child(3) span').textContent.toLowerCase();
+            const mobile = application.querySelector('td:nth-child(4) span').textContent.toLowerCase();
+            const jobTitle = application.querySelector('td:nth-child(5) span').textContent.toLowerCase();
+            const department = application.querySelector('td:nth-child(6) span').textContent.toLowerCase();
+
+            if (name.includes(searchTerm) || email.includes(searchTerm) || mobile.includes(searchTerm) || jobTitle.includes(searchTerm) || department.includes(searchTerm)) {
+                application.style.display = '';
+            } else {
+                application.style.display = 'none';
+            }
+        });
+
+        // Check if any applications are visible
+        const anyVisible = Array.from(applications).some(application => application.style.display !== 'none');
+        const emptyView = document.querySelector('.empty_view');
+
+        if (anyVisible) {
+            emptyView.classList.add('d-none');
+        } else {
+            emptyView.classList.remove('d-none');
+        }
+    }
+
+    // Search functionality
+    document.querySelector('.search__input').addEventListener('input', checkSearch);
+    checkSearch();
+</script>
+{% endblock script %}
