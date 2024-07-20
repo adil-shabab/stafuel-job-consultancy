@@ -1,0 +1,152 @@
+{% extends 'backend/base.html' %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+
+<div class="row mb-32 gy-32">
+    <div class="col-12">
+        <div class="row align-items-center justify-content-between g-24">
+            <div class="col-12 col-md-6">
+                <h3>Departments </h3>
+                <p class="hp-p1-body mb-0">Here is the list of all Departments</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+
+        <div class="row g-32">
+            <div class="col-12 col-lg-12">
+                <div class="row g-32">
+                    <div class="col-12">
+                        <div class="card hp-project-ecommerce-table-card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="d-flex align-items-center justify-content-between mb-32">
+                                            <h5 class="mb-0">List of Departments</h5>
+                                        </div>
+
+                                        <div class="table-responsive">
+                                            <table class="table align-middle mb-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th style="min-width: 110px;">
+                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">SI NO</span>
+                                                        </th>
+                                                        <th style="min-width: 180px;">
+                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">Department Name</span>
+                                                        </th>
+                                                        <th>
+                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">Opening positions</span>
+                                                        </th>
+                                                        <th>
+                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">Icon</span>
+                                                        </th>
+                                                        <th class="">
+                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">Status</span>
+                                                        </th>
+                                                        <th class="">
+                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black fw-bold hp-text-color-dark-50 text-uppercase">Action</span>
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    {% for department in departments %}
+                                                        <tr>
+                                                            <td class="ps-0">
+                                                                <span class="mb-0 fw-medium text-black-100 hp-text-color-dark-0">{{ forloop.counter }}</span>
+                                                            </td>
+                                                            <td>
+                                                                <span class="mb-0 text-black-80 hp-text-color-dark-30">{{ department.name }}</span>
+                                                            </td>
+                                                            <td>
+                                                                <span class="mb-0 text-black-80 hp-text-color-dark-30">{{ department.openings }} Open Positions</span>
+                                                            </td>
+                                                            <td>
+                                                                <span class="badge bg-success-4 hp-bg-dark-success text-success border-success">
+                                                                    <span style="color: black; font-size: 25px;" class="{{ department.icon }}"></span>
+                                                                </span>
+                                                            </td>
+                                                            <td>
+                                                                {% if department.status == 'active' %}
+                                                                <span class="badge bg-success-4 hp-bg-dark-success text-success border-success">
+                                                                    <span>Active</span>
+                                                                </span>
+                                                                {% else %}
+                                                                <span class="badge bg-error-4 hp-bg-dark-error text-error border-error">
+                                                                    <span>Inactive</span>
+                                                                </span>
+                                                                {% endif %}
+                                                            </td>
+                                                            <td>
+                                                                <div class="d_flex_icons">
+                                                                    <a href="{% url 'department_update' department.slug %}">
+                                                                        <span class="fa-regular fa-pen-to-square"></span>
+                                                                    </a>
+                                                                    <a href="#" onclick="deleteDepartment('{{ department.slug }}')">
+                                                                        <span class="fa-solid fa-trash"></span>
+                                                                    </a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    {% endfor %}
+    
+                                                </tbody>
+                                            </table>
+
+                                            
+                                            {% if departments %}
+                                            {% else %}
+                                            <div class="empty_view order-5">
+                                                <img src="{% static 'images/empty.jpg' %}" alt="">
+                                                <h4>No Department Found</h4>
+                                            </div>  
+                                            {% endif %}
+                                                
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
+
+{% block script %}
+    <script>
+        document.querySelector('.department').classList.add('active')
+
+        
+        function deleteDepartment(slug) {
+            const deleteUrl = `{% url 'department_delete' 'dummy_slug' %}`.replace('dummy_slug', slug);
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = deleteUrl;
+                }
+            });
+        }
+    </script>
+{% endblock script %}
+    

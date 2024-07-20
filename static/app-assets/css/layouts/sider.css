@@ -178,7 +178,7 @@ body.collapse-btn-none.collapsed-active .hp-sidebar-collapse-button {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 14px 0 14px 14px;
+  padding: 14px 14px 14px 14px;
   border-radius: 7px;
   margin: 0;
   background: none;

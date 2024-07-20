@@ -1,0 +1,101 @@
+{% extends 'backend/base.html' %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+
+<div class="row mb-32 gy-32">
+    <div class="col-12">
+        <div class="row align-items-center justify-content-between g-24">
+            <div class="col-12 col-md-6">
+                <h3>Create Departments </h3>
+                <p class="hp-p1-body mb-0">Here you can create new department</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12">
+
+        <div class="row g-32">
+            <div class="col-12 col-lg-12">
+                <div class="row g-32">
+                    <div class="col-12">
+                        <div class="card hp-project-ecommerce-table-card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="d-flex align-items-center justify-content-between mb-32">
+                                            <h5 class="mb-0">{% if form.instance.pk %}Update Department{% else %}Create New Department{% endif %}</h5>
+                                        </div>
+
+                                        <form  method="post" enctype="multipart/form-data" action="">
+                                            {% csrf_token %}
+                                            <div class="row">
+                                                <div class="col-md-6 input_div">
+                                                    <label for="id_name">Department Name</label>
+                                                    {{ form.name }}
+                                                </div>
+                                                <div class="col-md-6 input_div">
+                                                    <label for="id_openings">How many openings available</label>
+                                                    {{ form.openings }}
+                                                </div>
+                                                <div class="col-md-6 input_div">
+                                                    <label for="id_icon">Icon</label>
+                                                    {{ form.icon }}
+                                                    <span class="icon_" id="iconPreview"></span>
+                                                </div>
+                                            </div>
+                                    
+                                            <ul class="radio-switch">
+                                                <li class="radio-switch__item">
+                                                    <input class="radio-switch__input ri5-sr-only" type="radio" name="status" id="radio-1" value="active" checked {% if form.initial.status == "active" %}checked{% endif %}>
+                                                    <label class="radio-switch__label" for="radio-1">Active</label>
+                                                </li>
+                                                <li class="radio-switch__item">
+                                                    <input class="radio-switch__input ri5-sr-only" type="radio" name="status" id="radio-2" value="inactive" {% if form.initial.status == "inactive" %}checked{% endif %}>
+                                                    <label class="radio-switch__label" for="radio-2">Inactive</label>
+                                                    <div aria-hidden="true" class="radio-switch__marker"></div>
+                                                </li>
+                                            </ul>
+                                    
+                                            <div class="sub_btn">
+                                                <button type="submit">Submit</button>
+                                            </div>
+                                        </form>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+
+
+{% block script %}
+    <script>
+        document.querySelector('.department').classList.add('active')
+    </script>
+    <script>
+        function updateIcon() {
+            var iconInput = document.getElementById('id_icon');
+            var iconPreview = document.getElementById('iconPreview');
+            iconPreview.className = 'icon_ ' + iconInput.value;
+        }
+
+        document.getElementById('id_icon').addEventListener('input', updateIcon);
+        // Initial call to set the icon if there's a pre-filled value
+        updateIcon();
+    </script>
+{% endblock script %}
+    

@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'app-assets/icons/remix-icon/index.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/bootstrap.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/colors.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Base -->
     <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/base/typography.css' %}">
@@ -64,9 +65,8 @@
                             </div>
             
                             <div class="hp-header-text-info col col-lg-14 col-xl-16 hp-header-start-text d-flex align-items-center hp-horizontal-none">
-                                <p class="hp-header-start-text-item hp-input-label fw-normal hp-text-color-black-100 hp-text-color-dark-0 ms-12 mb-0 lh-1 d-flex align-items-center">
-                                    Do you know the latest update of 2022?&nbsp;&nbsp;
-                                    <span class="hp-text-color-primary-1">Our roadmap is alive for future updates.</span>
+                                <p id="greeting" class="hp-header-start-text-item hp-input-label fw-normal hp-text-color-black-100 hp-text-color-dark-0 ms-12 mb-0 lh-1 d-flex align-items-center">
+                                    Good Morning Admin
                                 </p>
                             </div>
             
@@ -279,10 +279,79 @@
         </div>
     </main>
 
+    {% load static %}
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            {% if messages %}
+                {% for message in messages %}
+                    Swal.fire({
+                        title: "{{ message.tags|capfirst }}",
+                        text: "{{ message }}",
+                        icon: "{{ message.tags }}",
+                        confirmButtonText: "OK"
+                    });
+                {% endfor %}
+            {% endif %}
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var greetingElement = document.getElementById('greeting');
+            var now = new Date();
+            var hours = now.getHours();
+            var greeting;
+
+            if (hours < 12) {
+                greeting = "Good Morning";
+            } else if (hours < 18) {
+                greeting = "Good Afternoon";
+            } else {
+                greeting = "Good Evening";
+            }
+
+            greetingElement.textContent = greeting + ' Admin';
+        });
+    </script>
+
     <!-- Plugin -->
     <script src="{% static 'app-assets/js/plugin/jquery.min.js' %}"></script>
     <script src="{% static 'app-assets/js/plugin/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'app-assets/js/plugin/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'app-assets/js/plugin/jquery.mask.min.js' %}"></script>
+    <script src="{% static 'app-assets/js/plugin/autocomplete.min.js' %}"></script>
+    <script src="{% static 'app-assets/js/plugin/moment.min.js' %}"></script>
+
+    <!-- Layouts -->
+    <script src="{% static 'app-assets/js/layouts/header-search.js' %}"></script>
     <script src="{% static 'app-assets/js/layouts/sider.js' %}"></script>
+    <script src="{% static 'app-assets/js/components/input-number.js' %}"></script>
+
+    <!-- Base -->
+    <script src="{% static 'app-assets/js/base/index.js' %}"></script>
+    <!-- Customizer -->
+    <script src="{% static 'app-assets/js/customizer.js' %}"></script>
+
+    <!-- Charts -->
+    <script src="{% static 'app-assets/js/plugin/apexcharts.min.js' %}"></script>
+    <script src="{% static 'app-assets/js/charts/apex-chart.js' %}"></script>
+
+    <!-- Cards -->
+    <script src="{% static 'app-assets/js/cards/card-advance.js' %}"></script>
+    <script src="{% static 'app-assets/js/cards/card-analytic.js' %}"></script>
+    <script src="{% static 'app-assets/js/cards/card-statistic.js' %}"></script>
+
+    <!-- Pages -->
+    <script src="{% static 'app-assets/js/pages/dashboard-ecommerce.js' %}"></script>
+
+    <!-- Custom -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+
+
     {% block script %}{% endblock %}
 </body>
 </html>

@@ -36,8 +36,8 @@
                     <div class="menu-title">DASHBOARDS</div>
 
                     <ul>
-                        <li>
-                            <a href="dashboard-analytics.html">
+                        <li class="menu__nav dashboard">
+                            <a href="{% url 'dashboard' %}">
                                 <div class="tooltip-item in-active" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="Analytics" aria-label="Analytics"></div>
 
                                 <span>
@@ -48,12 +48,12 @@
                                         </svg>
                                     </span>
 
-                                    <span>Analytics</span>
+                                    <span>Dashboard</span>
                                 </span>
                             </a>
                         </li>
 
-                        <li>
+                        <li class="menu__nav department">
                             <a href="javascript:;" class="submenu-item">
                                 <span>
                                     <span class="submenu-item-icon">
@@ -63,7 +63,7 @@
                                         </svg>
                                     </span>
 
-                                    <span>E-commerce</span>
+                                    <span>Department</span>
                                 </span>
 
                                 <div class="menu-arrow"></div>
@@ -71,28 +71,18 @@
 
                             <ul class="submenu-children" data-level="1">
                                 <li>
-                                    <a href="app-ecommerce-shop.html">
-                                        <span>Shop</span>
+                                    <a href="{% url 'departments' %}">
+                                        <span>View Departments</span>
                                     </a>
                                 </li>
 
                                 <li>
-                                    <a href="app-ecommerce-wishlist.html">
-                                        <span>Wishlist</span>
+                                    <a href="{% url 'department_create' %}">
+                                        <span>Add New Department</span>
                                     </a>
                                 </li>
 
-                                <li>
-                                    <a href="app-ecommerce-product-detail.html">
-                                        <span>Product Detail</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="app-ecommerce-checkout.html">
-                                        <span>Checkout</span>
-                                    </a>
-                                </li>
+                                
                             </ul>
                         </li>
                     </ul>
