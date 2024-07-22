@@ -1,0 +1,52 @@
+{% load static %}
+    <!-- Main Header-->
+    <header class="main-header header-style-three">
+      <div class="container-fluid">
+          <!-- Main box -->
+          <div class="main-box">
+              <!--Nav Outer -->
+              <div class="nav-outer">
+                  <div class="logo-box">
+                      <div class="logo logo_navbar"><a href="#"><img src="{% static 'frontend/images/stafuel-logo.png' %}" alt="" title=""></a></div>
+                  </div>
+                  <nav class="nav main-menu">
+                      <ul class="navigation" id="navbar">
+                          <li class="current">
+                              <a href="#">Home</a>
+                          </li>
+                          <li class="">
+                              <a href="#">About</a>
+                          </li>
+                          <li class="">
+                              <a href="#">Find Jobs</a>
+                          </li>
+                          <li class="">
+                              <a href="#">Blogs</a>
+                          </li>
+                          <li class="">
+                              <a href="#">Contact</a>
+                          </li>
+                      </ul>
+                  </nav>
+                  <!-- Main Menu End-->
+              </div>
+              <div class="outer-box">
+                  <div class="btn-box">
+                      <a href="#" class="theme-btn btn-style-seven">Upload Your Resume</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- Mobile Header -->
+      <div class="mobile-header">
+          <div class="logo"><a href="#"><img class="logo_navbar_mobile" src="{% static 'frontend/images/stafuel-logo.png' %}" alt="" title=""></a></div>
+          <!--Nav Box-->
+          <div class="nav-outer clearfix">
+              <div class="outer-box">
+                  <a href="#nav-mobile" class="mobile-nav-toggler navbar-trigger"><span class="flaticon-menu-1"></span></a>
+              </div>
+          </div>
+      </div>
+      <!-- Mobile Nav -->
+      <div id="nav-mobile"></div>
+  </header>

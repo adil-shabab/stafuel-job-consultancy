@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8">
+  <title>
+  {% block title %}
+    
+  {% endblock title %}
+  </title>
+
+    <!-- Stylesheets -->
+    <link href="{% static 'frontend/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'frontend/css/style.css' %}" rel="stylesheet">
+    <link href="{% static 'frontend/css/responsive.css' %}" rel="stylesheet">
+
+    <link rel="shortcut icon" href="{% static 'frontend/images/favicon.png' %}" type="image/x-icon">
+
+    <link rel="icon" href="{% static 'frontend/images/favicon.png' %}" type="image/x-icon">
+
+    <!-- Responsive -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    
+    {% block head %}
+        
+    {% endblock head %}
+        
+</head>
+
+<body data-anm=".anm">
+
+  <div class="page-wrapper">
+
+    <!-- Preloader -->
+    <div class="preloader"></div>
+
+    <!-- Header Span -->
+    <span class="header-span"></span>
+
+
+    {% include 'frontend/include/navbar.html' %}
+    <!--End Main Header -->
+
+    
+    
+    {% block content %}
+        
+    {% endblock content %}
+        
+
+    {% include 'frontend/include/footer.html' %}
+
+
+  </div><!-- End Page Wrapper -->
+
+
+    
+    {% block script %}
+        
+    {% endblock script %}
+        
+
+    <!-- Scripts -->
+    <script src="{% static 'frontend/js/jquery.js' %}"></script>
+    <script src="{% static 'frontend/js/popper.min.js' %}"></script>
+    <script src="{% static 'frontend/js/chosen.min.js' %}"></script>
+    <script src="{% static 'frontend/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'frontend/js/jquery.fancybox.js' %}"></script>
+    <script src="{% static 'frontend/js/jquery.modal.min.js' %}"></script>
+    <script src="{% static 'frontend/js/mmenu.polyfills.js' %}"></script>
+    <script src="{% static 'frontend/js/mmenu.js' %}"></script>
+    <script src="{% static 'frontend/js/appear.js' %}"></script>
+    <script src="{% static 'frontend/js/anm.min.js' %}"></script>
+    <script src="{% static 'frontend/js/ScrollMagic.min.js' %}"></script>
+    <script src="{% static 'frontend/js/rellax.min.js' %}"></script>
+    <script src="{% static 'frontend/js/owl.js' %}"></script>
+    <script src="{% static 'frontend/js/wow.js' %}"></script>
+    <script src="{% static 'frontend/js/script.js' %}"></script>
+    
+
+</body>
+
+
+</html>
