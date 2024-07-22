@@ -23,8 +23,8 @@
                           <li class="blogs__nav">
                               <a href="{% url 'blogs' %}">Blogs</a>
                           </li>
-                          <li class="">
-                              <a href="#">Contact</a>
+                          <li class="contact__nav">
+                              <a href="{% url 'contact' %}">Contact</a>
                           </li>
                       </ul>
                   </nav>
@@ -32,7 +32,7 @@
               </div>
               <div class="outer-box">
                   <div class="btn-box">
-                      <a href="#" class="theme-btn btn-style-seven">Upload Your Resume</a>
+                      <a href="{% url 'upload_resume' %}" class="theme-btn btn-style-seven">Upload Your Resume</a>
                   </div>
               </div>
           </div>

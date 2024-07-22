@@ -133,7 +133,7 @@
                   <span class="icon company-logo d-md-flex d-none">
                     <span class="flaticon-briefcase"></span>
                   </span>
-                  <h4><a href="#">{{job.title}}</a></h4>
+                  <h4><a href="{% url 'application' job.slug %}">{{job.title}}</a></h4>
                   <ul class="job-info">
                     <li><span class="icon flaticon-briefcase"></span> {{job.department.name}}</li>
                     <li><span class="icon flaticon-map-locator"></span> {{job.location}}</li>
@@ -144,7 +144,7 @@
                 <ul class="job-other-info">
                   <li class="time">{{job.job_type}}</li>
                 </ul>
-                <a href="#" class="theme-btn btn-style-three">Apply Job</a>
+                <a href="{% url 'application' job.slug %}" class="theme-btn btn-style-three">Apply Job</a>
               </div>
             </div>
           {% endfor %}
