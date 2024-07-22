@@ -179,3 +179,31 @@ class Resume(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
+
+class Message(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    subject = models.CharField(max_length=255)
+    message = models.TextField()
+    number = models.CharField(max_length=20)
+    slug = models.SlugField(max_length=255, unique=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name + '-' + self.subject)
+            original_slug = self.slug
+            counter = 1
+            while Message.objects.filter(slug=self.slug).exists():
+                self.slug = f"{original_slug}-{counter}"
+                counter += 1
+        super(Message, self).save(*args, **kwargs)
+
+
+
+    def __str__(self):
+        return f"{self.name} - {self.subject}"

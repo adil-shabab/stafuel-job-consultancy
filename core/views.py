@@ -163,10 +163,23 @@ class ResumeListView(ListView):
     def get_queryset(self):
         return Resume.objects.all().order_by('-created_at')
 
+class MessageListView(ListView):
+    model = Message
+    template_name = 'backend/messages.html'
+    context_object_name = 'msgs'
+
+    def get_queryset(self):
+        return Message.objects.all().order_by('-created_at')
+
         
 def view_resume(request, slug):
     resume = Resume.objects.get(slug=slug)
     return render(request, 'backend/resume-view.html', {'resume': resume})
+
+
+def view_message(request, slug):
+    message = Message.objects.get(slug=slug)
+    return render(request, 'backend/message-view.html', {'message': message})
 
 
 def dashboard(request):
