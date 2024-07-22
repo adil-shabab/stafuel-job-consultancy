@@ -474,3 +474,6 @@
 .form-control:disabled, .form-control[readonly]{
     background-color: white !important;
 }
+.sidebar__icon{
+  width: 17px;
+}
