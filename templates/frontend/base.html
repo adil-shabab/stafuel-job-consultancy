@@ -62,6 +62,8 @@
     {% block script %}
         
     {% endblock script %}
+
+    
         
 
     <!-- Scripts -->
@@ -83,6 +85,25 @@
     <script src="{% static 'frontend/js/script.js' %}"></script>
     
 
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            {% if messages %}
+                {% for message in messages %}
+                    Swal.fire({
+                        title: "{{ message.tags|capfirst }}",
+                        text: "{{ message }}",
+                        icon: "{{ message.tags }}",
+                        confirmButtonText: "OK"
+                    });
+                {% endfor %}
+            {% endif %}
+        });
+    </script>
+
+    
 </body>
 
 

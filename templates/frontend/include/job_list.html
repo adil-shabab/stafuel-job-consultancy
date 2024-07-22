@@ -1,0 +1,31 @@
+{% load static %}
+{% for job in jobs %}
+<div class="job-block">
+    <div class="inner-box">
+        <div class="content">
+            <span class="company-logo">
+                <span class="flaticon-briefcase"></span>
+            </span>
+            <h4><a href="#">{{ job.title }}</a></h4>
+            <ul class="job-info">
+                <li><span class="icon flaticon-briefcase"></span> {{ job.department.name }}</li>
+                <li><span class="icon flaticon-map-locator"></span> {{ job.location }}</li>
+                <li><span class="icon flaticon-clock-3"></span> {{ job.created_at|timesince }} ago</li>
+                <li><span class="icon flaticon-money"></span> &#x20b9; {{ job.salary }}</li>
+            </ul>
+            <ul class="job-other-info">
+                <li class="time">{{ job.job_type }}</li>
+                <li class="privacy">{{ job.experience }} of Experience</li>
+            </ul>
+            <div class="mt-3">
+                <a href="#" class="theme-btn btn-style-three d-flex">Apply Job</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% empty %}
+<div style="width: 100%;" class="empty_view d-flex justify-content-center align-items-center {% if jobs %}d-none{% endif %}">
+    <img style="width: 50%;" src="{% static 'images/empty.jpg' %}" alt="">
+    <h4>No Jobs Found</h4>
+</div>  
+{% endfor %}

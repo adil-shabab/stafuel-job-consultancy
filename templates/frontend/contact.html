@@ -2,10 +2,9 @@
 {% load static %}
 
 {% block title %}
-  Jobs | Stafuel
+  Contact | Stafuel
 {% endblock title %}
   
-
 
 {% block content %}
 
@@ -30,14 +29,16 @@
             <div class="contact-form default-form">
                 <h3>Leave A Message</h3>
                 <!--Contact Form-->
-                <form method="post" action="#" id="email-form">
+                <form method="post" action="{% url 'contact' %}" id="email-form">
+                    {% csrf_token %}
                     <div class="row">
-                        <div class="form-group col-lg-12 col-md-12 col-sm-12">
-                            <div class="response"></div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 form-group mb-4">
+                            <label>Your Name</label>
+                            <input type="text" name="name" class="username" placeholder="Your Name*" required>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12 form-group">
-                            <label>Your Name</label>
-                            <input type="text" name="username" class="username" placeholder="Your Name*" required>
+                            <label>Your Mobile</label>
+                            <input type="text" name="mobile" class="username" placeholder="Your Mobile*" required>
                         </div>
                         <div class="col-lg-6 col-md-12 col-sm-12 form-group">
                             <label>Your Email</label>
@@ -52,10 +53,11 @@
                             <textarea name="message" placeholder="Write your message..." required></textarea>
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                            <button class="theme-btn btn-style-one" type="button" id="submit" name="submit-form">Send Message</button>
+                            <button class="theme-btn btn-style-one" type="submit" id="submit" name="submit-form">Send Message</button>
                         </div>
                     </div>
                 </form>
+                
             </div>
             <!--End Contact Form -->
         </div>
@@ -68,5 +70,21 @@
 {% block script %}
     <script>
       document.querySelector('.contact__nav').classList.add('current')
+      document.getElementById('email-form').addEventListener('submit', (e) => {
+        const mobileInput = document.querySelector('input[name="mobile"]').value;
+        const mobileRegex = /^\d{10}$/;
+
+        if (!mobileRegex.test(mobileInput)) {
+            e.preventDefault();
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid Mobile Number',
+                text: 'Please enter a valid 10-digit mobile number.'
+            });
+        } else {
+            // If the mobile number is valid, submit the form
+            document.getElementById('email-form').submit();
+        }
+    });
     </script>
 {% endblock script %}
