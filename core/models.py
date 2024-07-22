@@ -137,3 +137,45 @@ class Application(models.Model):
 
     def __str__(self):
         return f'{self.name} - {self.job.title}'
+
+
+
+
+class Resume(models.Model):
+
+    EXPERIENCE_CHOICES = [
+        ('0-1', '0-1 years'),
+        ('1-2', '1-2 years'),
+        ('2-3', '2-3 years'),
+        ('3-4', '3-4 years'),
+        ('4-5', '4-5 years'),
+        ('5+', '5+ years'),
+    ]
+    
+    
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    number = models.CharField(max_length=14)
+    experience = models.CharField(max_length=3, choices=EXPERIENCE_CHOICES)
+    skills = RichTextField()
+    resume = models.FileField(upload_to='resumes/', validators=[validate_pdf])
+    job_title = models.CharField(max_length=255)
+    department = models.ForeignKey(Department, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    slug = models.SlugField(max_length=255, unique=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name + '-' + self.job_title)
+            original_slug = self.slug
+            counter = 1
+            while Resume.objects.filter(slug=self.slug).exists():
+                self.slug = f"{original_slug}-{counter}"
+                counter += 1
+        super(Resume, self).save(*args, **kwargs)
+
+
+
+
+    def __str__(self):
+        return self.name

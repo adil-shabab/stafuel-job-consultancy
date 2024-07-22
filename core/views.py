@@ -153,5 +153,21 @@ def view_application_job(request, slug):
 #         return response
 
 
+
+
+class ResumeListView(ListView):
+    model = Application
+    template_name = 'backend/resumes.html'
+    context_object_name = 'resumes'
+
+    def get_queryset(self):
+        return Resume.objects.all().order_by('-created_at')
+
+        
+def view_resume(request, slug):
+    resume = Resume.objects.get(slug=slug)
+    return render(request, 'backend/resume-view.html', {'resume': resume})
+
+
 def dashboard(request):
     return render(request, 'backend/dashboard.html')

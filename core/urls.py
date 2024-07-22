@@ -17,7 +17,11 @@ urlpatterns = [
     path('account/applications/', ApplicationListView.as_view(), name='application-list'),
     path('account/applications/<slug:slug>', view_application, name='view_application'),
 
-    path('acccont/application/department/<slug:slug>', view_application_job, name='view_application_job')
+    path('acccont/application/department/<slug:slug>', view_application_job, name='view_application_job'),
+   
+    path('account/resumes/', ResumeListView.as_view(), name='resume-list'),
+    path('account/resumes/<slug:slug>', view_resume, name='view_resume'),
+
     # path('account/applications/create/', ApplicationCreateView.as_view(), name='application-create'),
     # path('account/applications/<slug:slug>/update/', ApplicationUpdateView.as_view(), name='application-update'),
     # path('account/applications/<slug:slug>/delete/', ApplicationDeleteView.as_view(), name='application-delete'),

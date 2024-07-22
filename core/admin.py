@@ -6,3 +6,4 @@ from .models import *
 admin.site.register(Department)
 admin.site.register(Job)
 admin.site.register(Application)
+admin.site.register(Resume)
