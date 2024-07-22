@@ -477,3 +477,11 @@
 .sidebar__icon{
   width: 17px;
 }
+.login__logo{
+  width: 205px;
+}
+#login_container{
+  max-height: 100vh;
+  max-width: 100%;
+  overflow: hidden;
+}

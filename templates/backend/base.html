@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="msapplication-TileColor" content="#0010f7">
+    <meta name="msapplication-TileColor" content="#135b84">
     <meta name="theme-color" content="#ffffff">
 
     <!-- Font -->
@@ -65,7 +65,7 @@
                             </div>
             
                             <div class="hp-header-text-info col col-lg-14 col-xl-16 hp-header-start-text d-flex align-items-center hp-horizontal-none">
-                                <p id="greeting" class="hp-header-start-text-item hp-input-label fw-normal hp-text-color-black-100 hp-text-color-dark-0 ms-12 mb-0 lh-1 d-flex align-items-center">
+                                <p style="text-transform: capitalize;" id="greeting" class="hp-header-start-text-item hp-input-label fw-normal hp-text-color-black-100 hp-text-color-dark-0 ms-12 mb-0 lh-1 d-flex align-items-center">
                                     Good Morning Admin
                                 </p>
                             </div>
@@ -80,7 +80,7 @@
                                         <div class="hp-cursor-pointer rounded-4 border hp-border-color-dark-80">
                                             <div class="rounded-3 overflow-hidden m-4 d-flex">
                                                 <div class="avatar-item hp-bg-info-4 d-flex" style="width: 32px; height: 32px;">
-                                                    <img src="{% static 'app-assets/img/memoji/user-avatar-4.png' %}" alt="User Avatar">
+                                                    <img src="{% static 'images/user.png' %}" alt="User Avatar">
                                                 </div>
                                             </div>
                                         </div>
@@ -89,7 +89,7 @@
                                             <div class="rounded hp-bg-black-0 hp-bg-dark-100 px-18 py-24 pt-0">
                                                 <div class="row">
                                                     <div class="col-12 mt-24">
-                                                        <a class="hp-p1-body fw-medium" href="index.html">Logout</a>
+                                                        <a class="hp-p1-body fw-medium" href="{% url 'logout' %}">Logout</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -109,7 +109,7 @@
                 <div class="w-auto px-0">
                     <div class="hp-header-logo d-flex align-items-center">
                         <a href="{% url 'dashboard' %}" class="position-relative">
-                            <img src="{% static 'images/stafuel-logo.png' %}" alt="" class="log__img">
+                            <img src="{% static 'images/stafuel-logo.png' %}" style="width: 100px;" alt="" class="log__img">
                         </a>
                     </div>
                 </div>
@@ -137,11 +137,7 @@
                             <div class="w-auto px-0">
                                 <div class="hp-header-logo d-flex align-items-center">
                                     <a href="{% url 'dashboard' %}" class="position-relative">
-                                        <img src="{% static 'images/stafuel-logo.png' %}" alt="" class="logo__img">
-                                    </a>
-
-                                    <a href="https://hypeople-studio.gitbook.io/yoda/change-log" target="_blank" class="d-flex">
-                                        <span class="hp-sidebar-hidden hp-caption fw-normal hp-text-color-primary-1">v.3.2</span>
+                                        <img src="{% static 'images/stafuel-logo.png' %}" style="width: 110px;" alt="" class="logo__img">
                                     </a>
                                 </div>
                             </div>
@@ -161,10 +157,10 @@
                                 <div class="menu-title">DASHBOARDS</div>
 
                                 <ul>
-                                    <li>
-                                        <a href="dashboard-analytics.html">
+                                    <li class="menu__nav dashboard">
+                                        <a href="{% url 'dashboard' %}">
                                             <div class="tooltip-item in-active" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="Analytics" aria-label="Analytics"></div>
-
+            
                                             <span>
                                                 <span class="submenu-item-icon">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -172,14 +168,13 @@
                                                         <path d="m1.97 12.7 6-.02c.75 0 1.59.57 1.87 1.27l1.14 2.88c.26.65.67.65.93 0l2.29-5.81c.22-.56.63-.58.91-.05l1.04 1.97c.31.59 1.11 1.07 1.77 1.07h4.06" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                                     </svg>
                                                 </span>
-
-                                                <span>Analytics</span>
+            
+                                                <span>Dashboard</span>
                                             </span>
                                         </a>
                                     </li>
-
-
-                                    <li>
+            
+                                    <li class="menu__nav department">
                                         <a href="javascript:;" class="submenu-item">
                                             <span>
                                                 <span class="submenu-item-icon">
@@ -187,74 +182,105 @@
                                                         <path d="M4.26 11.02v4.97c0 1.82 0 1.82 1.72 2.98l4.73 2.73c.71.41 1.87.41 2.58 0l4.73-2.73c1.72-1.16 1.72-1.16 1.72-2.98v-4.97c0-1.82 0-1.82-1.72-2.98l-4.73-2.73c-.71-.41-1.87-.41-2.58 0L5.98 8.04C4.26 9.2 4.26 9.2 4.26 11.02Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                                         <path d="M17.5 7.63V5c0-2-1-3-3-3h-5c-2 0-3 1-3 3v2.56M12.63 10.99l.57.89c.09.14.29.28.44.32l1.02.26c.63.16.8.7.39 1.2l-.67.81c-.1.13-.18.36-.17.52l.06 1.05c.04.65-.42.98-1.02.74l-.98-.39a.863.863 0 0 0-.55 0l-.98.39c-.6.24-1.06-.1-1.02-.74l.06-1.05c.01-.16-.07-.4-.17-.52l-.67-.81c-.41-.5-.24-1.04.39-1.2l1.02-.26c.16-.04.36-.19.44-.32l.57-.89c.36-.54.92-.54 1.27 0Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                                                     </svg>
-
                                                 </span>
-
-                                                <span>E-commerce</span>
+            
+                                                <span>Department</span>
                                             </span>
-
+            
                                             <div class="menu-arrow"></div>
                                         </a>
-
+            
                                         <ul class="submenu-children" data-level="1">
                                             <li>
-                                                <a href="app-ecommerce-shop.html">
-                                                    <span>Shop</span>
+                                                <a href="{% url 'departments' %}">
+                                                    <span>View Departments</span>
                                                 </a>
                                             </li>
-
+            
                                             <li>
-                                                <a href="app-ecommerce-wishlist.html">
-                                                    <span>Wishlist</span>
+                                                <a href="{% url 'department_create' %}">
+                                                    <span>Add New Department</span>
                                                 </a>
                                             </li>
-
-                                            <li>
-                                                <a href="app-ecommerce-product-detail.html">
-                                                    <span>Product Detail</span>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <a href="app-ecommerce-checkout.html">
-                                                    <span>Checkout</span>
-                                                </a>
-                                            </li>
+            
+                                            
                                         </ul>
+                                    </li>
+                                    <li class="menu__nav jobs">
+                                        <a href="javascript:;" class="submenu-item">
+                                            <span>
+                                                <span class="submenu-item-icon">
+                                                    <img src="{% static 'images/jobs-icon.png' %}" alt="" class="sidebar__icon">
+                                                </span>
+            
+                                                <span>Jobs</span>
+                                            </span>
+            
+                                            <div class="menu-arrow"></div>
+                                        </a>
+            
+                                        <ul class="submenu-children" data-level="1">
+                                            <li>
+                                                <a href="{% url 'job-list' %}">
+                                                    <span>View Jobs</span>
+                                                </a>
+                                            </li>
+            
+                                            <li>
+                                                <a href="{% url 'job-create' %}">
+                                                    <span>Add New Job</span>
+                                                </a>
+                                            </li>
+            
+                                            
+                                        </ul>
+                                    </li>
+            
+                                    <li class="menu__nav applications">
+                                        <a href="{% url 'application-list' %}">
+                                            <div class="tooltip-item in-active" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="Analytics" aria-label="Analytics"></div>
+            
+                                            <span>
+                                                <span class="submenu-item-icon">
+                                                    <img src="{% static 'images/application-icon.png' %}" alt="" class="sidebar__icon">
+                                                </span>
+            
+                                                <span>Applications</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    
+                                    <li class="menu__nav resumes">
+                                        <a href="{% url 'resume-list' %}">
+                                            <div class="tooltip-item in-active" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="Analytics" aria-label="Analytics"></div>
+            
+                                            <span>
+                                                <span class="submenu-item-icon">
+                                                    <img src="{% static 'images/resume-icon.png' %}" alt="" class="sidebar__icon">
+                                                </span>
+            
+                                                <span>Resumes</span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    
+                                    
+                                    <li class="menu__nav messages">
+                                        <a href="{% url 'message-list' %}">
+                                            <div class="tooltip-item in-active" data-bs-toggle="tooltip" data-bs-placement="right" title="" data-bs-original-title="Analytics" aria-label="Analytics"></div>
+            
+                                            <span>
+                                                <span class="submenu-item-icon">
+                                                    <img src="{% static 'images/message-icon.png' %}" alt="" class="sidebar__icon">
+                                                </span>
+            
+                                                <span>Messages</span>
+                                            </span>
+                                        </a>
                                     </li>
                                 </ul>
                             </li>
                         </ul>
-                    </div>
-
-                    <div class="row justify-content-between align-items-center hp-sidebar-footer mx-0 hp-bg-color-dark-90">
-                        <div class="divider border-black-40 hp-border-color-dark-70 hp-sidebar-hidden mt-0 px-0"></div>
-
-                        <div class="col">
-                            <div class="row align-items-center">
-                                <div class="w-auto px-0">
-                                    <div class="avatar-item bg-primary-4 d-flex align-items-center justify-content-center rounded-circle" style="width: 48px; height: 48px;">
-                                        <img src="{% static 'img/memoji/user-avatar-8.png' %}" height="100%" class="hp-img-cover">
-                                    </div>
-                                </div>
-
-                                <div class="w-auto ms-8 px-0 hp-sidebar-hidden mt-4">
-                                    <span class="d-block hp-text-color-black-100 hp-text-color-dark-0 hp-p1-body lh-1">Jane Doe</span>
-                                    <a href="profile-information.html" class="hp-badge-text fw-normal hp-text-color-dark-30">View Profile</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col hp-flex-none w-auto px-0 hp-sidebar-hidden">
-                            <a href="profile-information.html">
-                                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" class="remix-icon hp-text-color-black-100 hp-text-color-dark-0" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
-                                    <g>
-                                        <path fill="none" d="M0 0h24v24H0z"></path>
-                                        <path d="M3.34 17a10.018 10.018 0 0 1-.978-2.326 3 3 0 0 0 .002-5.347A9.99 9.99 0 0 1 4.865 4.99a3 3 0 0 0 4.631-2.674 9.99 9.99 0 0 1 5.007.002 3 3 0 0 0 4.632 2.672c.579.59 1.093 1.261 1.525 2.01.433.749.757 1.53.978 2.326a3 3 0 0 0-.002 5.347 9.99 9.99 0 0 1-2.501 4.337 3 3 0 0 0-4.631 2.674 9.99 9.99 0 0 1-5.007-.002 3 3 0 0 0-4.632-2.672A10.018 10.018 0 0 1 3.34 17zm5.66.196a4.993 4.993 0 0 1 2.25 2.77c.499.047 1 .048 1.499.001A4.993 4.993 0 0 1 15 17.197a4.993 4.993 0 0 1 3.525-.565c.29-.408.54-.843.748-1.298A4.993 4.993 0 0 1 18 12c0-1.26.47-2.437 1.273-3.334a8.126 8.126 0 0 0-.75-1.298A4.993 4.993 0 0 1 15 6.804a4.993 4.993 0 0 1-2.25-2.77c-.499-.047-1-.048-1.499-.001A4.993 4.993 0 0 1 9 6.803a4.993 4.993 0 0 1-3.525.565 7.99 7.99 0 0 0-.748 1.298A4.993 4.993 0 0 1 6 12c0 1.26-.47 2.437-1.273 3.334a8.126 8.126 0 0 0 .75 1.298A4.993 4.993 0 0 1 9 17.196zM12 15a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0-2a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"></path>
-                                    </g>
-                                </svg>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -313,7 +339,7 @@
                 greeting = "Good Evening";
             }
 
-            greetingElement.textContent = greeting + ' Admin';
+            greetingElement.textContent = greeting + ' {{request.user.username}}';
         });
     </script>
 

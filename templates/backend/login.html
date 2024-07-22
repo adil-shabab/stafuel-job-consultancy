@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="msapplication-TileColor" content="#135b84">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Plugin -->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/plugin/swiper-bundle.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/icons/iconly/index.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/icons/remix-icon/index.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/colors.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Base -->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/base/typography.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/base/base.css' %}">
+
+    <!-- Theme -->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/theme/colors-dark.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/theme/theme-dark.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/custom-rtl.css' %}">
+
+    <!-- Layouts -->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/layouts/sider.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/layouts/header.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/layouts/page-content.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/components.css' %}">
+    <!-- Customizer -->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/layouts/customizer.css' %}">
+
+    <!-- Charts -->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/plugin/apex-charts.css' %}">
+
+    <!-- Pages -->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/pages/dashboard-analytics.css' %}">
+
+    <!-- Custom -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+
+    <title>Login | Stafuel</title>
+    {% block head %}{% endblock %}
+</head>
+<body>
+
+    <div class="row hp-authentication-page" id="login_container">
+        <div class="hp-bg-black-20 hp-bg-color-dark-90 col-lg-6 col-12">
+            <div class="row hp-image-row h-100 px-8 px-sm-16 px-md-0 pb-32 pb-sm-0 pt-32 pt-md-0">
+                <div class="hp-logo-item m-16 m-sm-32 m-md-64 w-auto px-0 col-12">
+                    <div class="hp-header-logo d-flex align-items-center">
+                        <a href="#" class="position-relative">
+                            <img src="{% static 'images/stafuel-logo.png' %}" alt="" class="login__logo">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-12 px-0">
+                    <div class="row h-100 w-100 mx-0 align-items-center justify-content-center">
+                        <div class="hp-bg-item text-center mb-32 mb-md-0 px-0 col-12">
+                            <img class="hp-dark-none m-auto w-100" src="https://yoda.hypeople.studio/yoda-admin-template/app-assets/img/pages/authentication/authentication-bg.svg" alt="Background Image">
+                            <img class="hp-dark-block m-auto w-100" src="https://yoda.hypeople.studio/yoda-admin-template/app-assets/img/pages/authentication/authentication-bg-dark.svg" alt="Background Image">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6 py-sm-64 py-lg-0">
+            <div class="row align-items-center justify-content-center h-100 mx-4 mx-sm-n32">
+                <div class="col-12 col-md-9 col-xl-7 col-xxxl-5 px-8 px-sm-0 pt-24 pb-48">
+                    <h1 class="mb-0 mb-sm-24">Login</h1>
+                    <p class="mt-sm-8 mt-sm-0 text-black-60">Welcome back, please login to your account.</p>
+
+                    <form  method="post" enctype="multipart/form-data" class="mt-16 mt-sm-32 mb-8">
+                        {% csrf_token %}
+                        <div class="mb-16">
+                            <label for="loginUsername" class="form-label">Username :</label>
+                            <input type="text" class="form-control" id="loginUsername" name="username" required>
+                        </div>
+
+                        <div class="mb-16">
+                            <label for="loginPassword" class="form-label">Password :</label>
+                            <input type="password" class="form-control" id="loginPassword" name="password" required>
+                        </div>
+
+                        <div class="row align-items-center justify-content-between mb-16">
+                            <div class="col hp-flex-none w-auto">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <label class="form-check-label ps-4" for="exampleCheck1">Remember me</label>
+                                </div>
+                            </div>
+
+                           
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">
+                            <span  class="d-block w-100" style="color: inherit;">Sign in</span>
+                        </button>
+                    </form>
+
+
+
+                    <div class="mt-48 mt-sm-96 col-12">
+                        <p class="hp-p1-body text-center hp-text-color-black-60 mb-8"> Copyright 2024 Stafuel | Designed by <a href="https://thinkb.agency">thinkB</a> </p>
+
+                        <div class="row align-items-center justify-content-center mx-n8">
+                            <div class="w-auto hp-flex-none px-8 col">
+                                <a href="javascript:;" class="hp-text-color-black-80 hp-text-color-dark-40"> Privacy Policy </a>
+                            </div>
+
+                            <div class="w-auto hp-flex-none px-8 col">
+                                <a href="javascript:;" class="hp-text-color-black-80 hp-text-color-dark-40"> Term of use </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            {% if messages %}
+                {% for message in messages %}
+                    Swal.fire({
+                        title: "{{ message.tags|capfirst }}",
+                        text: "{{ message }}",
+                        icon: "{{ message.tags }}",
+                        confirmButtonText: "OK"
+                    });
+                {% endfor %}
+            {% endif %}
+        });
+    </script>
+
+
+
+    <!-- Plugin -->
+    <script src="{% static 'app-assets/js/plugin/jquery.min.js' %}"></script>
+    <script src="{% static 'app-assets/js/plugin/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'app-assets/js/plugin/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'app-assets/js/plugin/jquery.mask.min.js' %}"></script>
+    <script src="{% static 'app-assets/js/plugin/autocomplete.min.js' %}"></script>
+    <script src="{% static 'app-assets/js/plugin/moment.min.js' %}"></script>
+
+    <!-- Layouts -->
+    <script src="{% static 'app-assets/js/layouts/header-search.js' %}"></script>
+    <script src="{% static 'app-assets/js/layouts/sider.js' %}"></script>
+    <script src="{% static 'app-assets/js/components/input-number.js' %}"></script>
+
+    <!-- Base -->
+    <script src="{% static 'app-assets/js/base/index.js' %}"></script>
+    <!-- Customizer -->
+    <script src="{% static 'app-assets/js/customizer.js' %}"></script>
+
+    <!-- Charts -->
+    <script src="{% static 'app-assets/js/plugin/apexcharts.min.js' %}"></script>
+    <script src="{% static 'app-assets/js/charts/apex-chart.js' %}"></script>
+
+    <!-- Cards -->
+    <script src="{% static 'app-assets/js/cards/card-advance.js' %}"></script>
+    <script src="{% static 'app-assets/js/cards/card-analytic.js' %}"></script>
+    <script src="{% static 'app-assets/js/cards/card-statistic.js' %}"></script>
+
+    <!-- Pages -->
+    <script src="{% static 'app-assets/js/pages/dashboard-ecommerce.js' %}"></script>
+
+    <!-- Custom -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+</html>

@@ -3,6 +3,7 @@
 
 {% block title %}Dashboard{% endblock %}
 
+
 {% block content %}
 
 
@@ -10,7 +11,7 @@
     <div class="col-12">
         <div class="row align-items-center justify-content-between g-24">
             <div class="col-12 col-md-6">
-                <h3>Welcome back, Edward 👋</h3>
+                <h3 style="text-transform: capitalize;">Welcome back, {{request.user.username}} 👋</h3>
                 <p class="hp-p1-body mb-0">Your current status and analytics are here</p>
             </div>
         </div>
@@ -18,85 +19,86 @@
 
     <div class="col-12">
         <div class="row g-32 mb-32">
-            <div class="col-12 col-md-6 col-xl-3">
+            <!-- Messages Card -->
+            <div class="col-12 col-md-6 col-xl-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="row g-16">
                             <div class="col-6 hp-flex-none w-auto">
                                 <div class="avatar-item d-flex align-items-center justify-content-center avatar-lg bg-primary-4 hp-bg-color-dark-primary rounded-circle">
-                                    <i class="iconly-Light-People text-primary hp-text-color-dark-primary-2" style="font-size: 24px;"></i>
+                                    <i class="fa-regular fa-comment text-warning" style="font-size: 24px;"></i>
                                 </div>
                             </div>
 
                             <div class="col">
-                                <h3 class="mb-4 mt-8">243<span class="hp-badge-text ms-8 text-primary hp-text-color-dark-primary-2">+3%</span></h3>
-                                <p class="hp-p1-body mb-0 text-black-80 hp-text-color-dark-30">New Customer</p>
+                                <h3 class="mb-4 mt-8">
+                                    {{ data.message.current_month_count }}
+                                    <span class="hp-badge-text ms-8 text-primary hp-text-color-dark-primary-2">
+                                        {{ data.message.percentage_change|floatformat:2 }}%
+                                    </span>
+                                </h3>
+                                <p class="hp-p1-body mb-0 text-black-80 hp-text-color-dark-30">Total Messages</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-12 col-md-6 col-xl-3">
+            <!-- Resumes Card -->
+            <div class="col-12 col-md-6 col-xl-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="row g-16">
                             <div class="col-6 hp-flex-none w-auto">
-                                <div class="avatar-item d-flex align-items-center justify-content-center avatar-lg bg-secondary-4 hp-bg-color-dark-secondary rounded-circle">
-                                    <i class="iconly-Light-Buy text-secondary" style="font-size: 24px;"></i>
+                                <div class="avatar-item d-flex align-items-center justify-content-center avatar-lg bg-primary-4 hp-bg-color-dark-primary rounded-circle">
+                                    <i class="fa-regular fa-file text-secondary" style="font-size: 24px;"></i>
                                 </div>
                             </div>
 
                             <div class="col">
-                                <h3 class="mb-4 mt-8">1,243<span class="hp-badge-text ms-8 text-secondary">+4%</span></h3>
-                                <p class="hp-p1-body mb-0 text-black-80 hp-text-color-dark-30">New Orders</p>
+                                <h3 class="mb-4 mt-8">
+                                    {{ data.resume.current_month_count }}
+                                    <span class="hp-badge-text ms-8 text-primary hp-text-color-dark-primary-2">
+                                        {{ data.resume.percentage_change|floatformat:2 }}%
+                                    </span>
+                                </h3>
+                                <p class="hp-p1-body mb-0 text-black-80 hp-text-color-dark-30">Total Resumes</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-12 col-md-6 col-xl-3">
+            <!-- Applications Card -->
+            <div class="col-12 col-md-6 col-xl-4">
                 <div class="card">
                     <div class="card-body">
                         <div class="row g-16">
                             <div class="col-6 hp-flex-none w-auto">
-                                <div class="avatar-item d-flex align-items-center justify-content-center avatar-lg bg-warning-4 hp-bg-color-dark-warning rounded-circle">
-                                    <i class="iconly-Light-Ticket text-warning" style="font-size: 24px;"></i>
+                                <div class="avatar-item d-flex align-items-center justify-content-center avatar-lg bg-primary-4 hp-bg-color-dark-primary rounded-circle">
+                                    <i class="fa-brands fa-wpforms text-primary hp-text-color-dark-primary-2" style="font-size: 24px;"></i>
                                 </div>
                             </div>
 
                             <div class="col">
-                                <h3 class="mb-4 mt-8">$ 323<span class="hp-badge-text ms-8 text-warning">-1.4%</span></h3>
-                                <p class="hp-p1-body mb-0 text-black-80 hp-text-color-dark-30">Average Sale</p>
+                                <h3 class="mb-4 mt-8">
+                                    {{ data.application.current_month_count }}
+                                    <span class="hp-badge-text ms-8 text-primary hp-text-color-dark-primary-2">
+                                        {{ data.application.percentage_change|floatformat:2 }}%
+                                    </span>
+                                </h3>
+                                <p class="hp-p1-body mb-0 text-black-80 hp-text-color-dark-30">Total Applications</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-12 col-md-6 col-xl-3">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row g-16">
-                            <div class="col-6 hp-flex-none w-auto">
-                                <div class="avatar-item d-flex align-items-center justify-content-center avatar-lg bg-danger-4 hp-bg-color-dark-danger rounded-circle">
-                                    <i class="iconly-Light-Discount text-danger" style="font-size: 24px;"></i>
-                                </div>
-                            </div>
 
-                            <div class="col">
-                                <h3 class="mb-4 mt-8">$ 1,32<span class="hp-badge-text ms-8 text-danger">+3%</span></h3>
-                                <p class="hp-p1-body mb-0 text-black-80 hp-text-color-dark-30">Gross Profit</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
         <div class="row g-32">
-            <div class="col-12 col-lg-8">
+            <div class="col-12 col-lg-12">
                 <div class="row g-32">
                     <div class="col-12">
                         <div class="card hp-project-ecommerce-table-card">
@@ -104,134 +106,75 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="d-flex align-items-center justify-content-between mb-32">
-                                            <h5 class="mb-0">Latest Orders</h5>
-                                            <p class="hp-p1-body mb-0 fw-medium text-black-100 hp-text-color-dark-0">View all orders</p>
+                                            <h5 class="mb-0">Latest Resume Uploads</h5>
+                                            <a href="{% url 'resume-list' %}">
+                                                <p class="hp-p1-body mb-0 fw-medium text-black-100 hp-text-color-dark-0">View all uploads</p>
+                                            </a>
                                         </div>
 
                                         <div class="table-responsive">
+
+                                            <!-- Display Table -->
                                             <table class="table align-middle mb-0">
                                                 <thead>
-                                                    <tr>
-                                                        <th style="min-width: 110px;">
+                                                    <tr class="">
+                                                        <th>
                                                             <span class="hp-badge-size d-block pb-16 fw-normal text-black-60 hp-text-color-dark-50 text-uppercase">Date</span>
                                                         </th>
-                                                        <th style="min-width: 180px;">
-                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black-60 hp-text-color-dark-50 text-uppercase">Billing Name</span>
+                                                        <th>
+                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black-60 hp-text-color-dark-50 text-uppercase">Full Name</span>
                                                         </th>
                                                         <th>
-                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black-60 hp-text-color-dark-50 text-uppercase">Amount</span>
+                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black-60 hp-text-color-dark-50 text-uppercase">Email</span>
                                                         </th>
                                                         <th>
-                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black-60 hp-text-color-dark-50 text-uppercase">Status</span>
+                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black-60 hp-text-color-dark-50 text-uppercase">Mobile</span>
+                                                        </th>
+                                                        <th>
+                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black-60 hp-text-color-dark-50 text-uppercase">View Resume</span>
                                                         </th>
                                                         <th class="text-center">
-                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black-60 hp-text-color-dark-50 text-uppercase">Invoice</span>
+                                                            <span class="hp-badge-size d-block pb-16 fw-normal text-black-60 hp-text-color-dark-50 text-uppercase">Action</span>
                                                         </th>
                                                     </tr>
                                                 </thead>
 
                                                 <tbody>
+                                                    {% for resume in data.resume.objects %}
                                                     <tr>
                                                         <td class="ps-0">
-                                                            <span class="mb-0 fw-medium text-black-100 hp-text-color-dark-0">June 9, 2020</span>
+                                                            <span class="mb-0 fw-medium text-black-100 hp-text-color-dark-0">{{ resume.created_at|date:"d F Y" }}</span>
                                                         </td>
                                                         <td>
-                                                            <span class="mb-0 text-black-80 hp-text-color-dark-30">Elon Musk</span>
+                                                            <span class="mb-0 text-black-80 hp-text-color-dark-30">{{ resume.name }}</span>
                                                         </td>
                                                         <td>
-                                                            <span class="mb-0 text-black-80 hp-text-color-dark-30">$1,322.45</span>
+                                                            <span class="mb-0 text-black-80 hp-text-color-dark-30">{{ resume.email }}</span>
                                                         </td>
                                                         <td>
-                                                            <span class="badge bg-success-4 hp-bg-dark-success text-success border-success">Paid</span>
+                                                            <span class="mb-0 text-black-80 hp-text-color-dark-30">{{ resume.number }}</span>
                                                         </td>
                                                         <td>
-                                                            <span class="d-block text-black-60 hp-text-color-dark-50 text-center">
-                                                                <i class="iconly-Light-Download"></i>
-                                                            </span>
+                                                            <a href="{{ resume.resume.url }}" target="_blank" class="badge bg-success-4 hp-bg-dark-success text-success border-success">View Resume</a>
+                                                        </td>
+                                                        <td>
+                                                            <a href="{% url 'view_resume' resume.slug %}">
+                                                                <span class="d-block text-black-60 hp-text-color-dark-50 text-center">
+                                                                    <i class="fa-regular fa-eye"></i>
+                                                                </span>
+                                                            </a>
                                                         </td>
                                                     </tr>
-
-                                                    <tr>
-                                                        <td class="ps-0">
-                                                            <span class="mb-0 fw-medium text-black-100 hp-text-color-dark-0">June 9, 2020</span>
-                                                        </td>
-                                                        <td>
-                                                            <span class="mb-0 text-black-80 hp-text-color-dark-30">Christiano Ronaldo</span>
-                                                        </td>
-                                                        <td>
-                                                            <span class="mb-0 text-black-80 hp-text-color-dark-30">$733.32</span>
-                                                        </td>
-                                                        <td>
-                                                            <span class="badge bg-success-4 hp-bg-dark-success text-success border-success">Paid</span>
-                                                        </td>
-                                                        <td>
-                                                            <span class="d-block text-black-60 hp-text-color-dark-50 text-center">
-                                                                <i class="iconly-Light-Download"></i>
-                                                            </span>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="ps-0">
-                                                            <span class="mb-0 fw-medium text-black-100 hp-text-color-dark-0">June 10, 2020</span>
-                                                        </td>
-                                                        <td>
-                                                            <span class="mb-0 text-black-80 hp-text-color-dark-30">Jeff Bezos</span>
-                                                        </td>
-                                                        <td>
-                                                            <span class="mb-0 text-black-80 hp-text-color-dark-30">$1,923.32</span>
-                                                        </td>
-                                                        <td>
-                                                            <span class="badge bg-warning-4 hp-bg-dark-warning text-warning border-warning">Refund</span>
-                                                        </td>
-                                                        <td>
-                                                            <span class="d-block text-black-60 hp-text-color-dark-50 text-center">
-                                                                <i class="iconly-Light-Download"></i>
-                                                            </span>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="ps-0">
-                                                            <span class="mb-0 fw-medium text-black-100 hp-text-color-dark-0">June 9, 2020</span>
-                                                        </td>
-                                                        <td>
-                                                            <span class="mb-0 text-black-80 hp-text-color-dark-30">Richard Hamilton</span>
-                                                        </td>
-                                                        <td>
-                                                            <span class="mb-0 text-black-80 hp-text-color-dark-30">$922.12</span>
-                                                        </td>
-                                                        <td>
-                                                            <span class="badge bg-success-4 hp-bg-dark-success text-success border-success">Paid</span>
-                                                        </td>
-                                                        <td>
-                                                            <span class="d-block text-black-60 hp-text-color-dark-50 text-center">
-                                                                <i class="iconly-Light-Download"></i>
-                                                            </span>
-                                                        </td>
-                                                    </tr>
-
-                                                    <tr>
-                                                        <td class="ps-0">
-                                                            <span class="mb-0 fw-medium text-black-100 hp-text-color-dark-0">June 10, 2020</span>
-                                                        </td>
-                                                        <td>
-                                                            <span class="mb-0 text-black-80 hp-text-color-dark-30">Lebron James</span>
-                                                        </td>
-                                                        <td>
-                                                            <span class="mb-0 text-black-80 hp-text-color-dark-30">$323.98</span>
-                                                        </td>
-                                                        <td>
-                                                            <span class="badge bg-danger-4 hp-bg-dark-danger text-danger border-danger">Charge Back</span>
-                                                        </td>
-                                                        <td>
-                                                            <span class="d-block text-black-60 hp-text-color-dark-50 text-center">
-                                                                <i class="iconly-Light-Download"></i>
-                                                            </span>
-                                                        </td>
-                                                    </tr>
+                                                    {% endfor %}
                                                 </tbody>
+
+                                            
                                             </table>
+
+                                            <div class="empty_view {% if data.resume.objects %}d-none{% endif %}">
+                                                <img src="{% static 'images/empty.jpg' %}" style="width: 30%" alt="">
+                                                <h4 style="font-size: 15px; margin-top: 10px;">No Resume Upload Found</h4>
+                                            </div> 
                                         </div>
                                     </div>
                                 </div>
@@ -241,21 +184,9 @@
                 </div>
             </div>
 
-            <div class="col-12 col-lg-4">
-                <div class="card hp-card-6">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-12">
-                                <h5 class="mb-32">Earnings</h5>
-                            </div>
 
-                            <div class="col-12">
-                                <div id="earnings-donut-card" class="hp-donut-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        
+
         </div>
     </div>
 </div>
@@ -270,5 +201,9 @@
     <script>
         document.querySelector('.dashboard').classList.add('active')
     </script>
+
+
+
+
 {% endblock script %}
     
