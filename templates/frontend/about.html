@@ -1,0 +1,105 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block title %}
+  About | Stafuel
+{% endblock title %}
+  
+
+
+{% block content %}
+
+    <!--Page Title-->
+    <section class="page-title">
+        <div class="auto-container">
+            <div class="title-outer">
+                <h1>About Us</h1>
+                <ul class="page-breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li>About Us</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!--End Page Title-->
+
+    <!-- About Section Three -->
+    <section class="about-section-three">
+        <div class="auto-container">
+
+            <!-- Fun Fact Section -->
+            <div class="fun-fact-section">
+                <div class="row">
+                    <!--Column-->
+                    <div class="counter-column col-lg-4 col-md-4 col-sm-12 wow fadeInUp">
+                        <div class="count-box"><span class="count-text" data-speed="3000" data-stop="5">0</span>K</div>
+                        <h4 class="counter-title">5K active users</h4>
+                    </div>
+                    <!--Column-->
+                    <div class="counter-column col-lg-4 col-md-4 col-sm-12 wow fadeInUp" data-wow-delay="400ms">
+                        <div class="count-box"><span class="count-text" data-speed="3000" data-stop="500">0</span></div>
+                        <h4 class="counter-title">Over 500 open job positions</h4>
+                    </div>
+                    <!--Column-->
+                    <div class="counter-column col-lg-4 col-md-4 col-sm-12 wow fadeInUp" data-wow-delay="800ms">
+                        <div class="count-box"><span class="count-text" data-speed="3000" data-stop="200">0</span></div>
+                        <h4 class="counter-title">Over 200 Companies</h4>
+                    </div>
+                </div>
+            </div>
+            <!-- Fun Fact Section -->
+
+            <div class="text-box">
+                <h4>About Stafuel</h4>
+                <p>Stafuel Consulting Services provides global and industry-agnostic talent acquisition services that have reinvented the sourcing/recruiting model. The industry is moving to a gig economy-- the days of hourly work are being phased out. The days of clear expectations and deliverables are being phased in.</p>
+                <p>Historically, recruiting metrics begin at the outreach stage of the funnel (emails sent, response rate, interviews scheduled, etc.) Stafuel is providing true sourcing data such as talent mapping, individual platform results comparison, and specific boolean efficiency. We have created a model solely based on deliverables rather than hours to ensure you are getting what you want, every time. This offers full transparency, repeatability, and previously unavailable sourcing data.</p>
+                <p>At Stafuel, our commitment to quality means two things. First, we are committed to delivering quality solutions, meeting expectations, and satisfying clients. Second, we are committed to continuously improving the processes by which we provide our solutions so that our work repeatedly hits the mark each time.</p>
+                <p><span style="font-weight: 600; color: black;">Our Partnership Pledge : </span>At SCS, our team is committed to building strong, long-term relationships with our clients. We believe in working as a team to provide the best service for you. To achieve this, we spend time getting to know your business and requirements so we have a well-informed understanding of your needs, goals, and requirements. We deliver the right help and advice on demand, that inspires and creates trust, mutual respect, transparency, accountability, and a sense of operational partnership.</p>
+                <p><span style="font-weight: 600; color: black;">Our Vision : </span>Our vision is to provide excellent services that fulfill the expectations of our client companies. We strive to be recognized and trusted all across the world by our clients as well as candidates.</p>
+                <p><span style="font-weight: 600; color: black;">Our Mission : </span>Our mission is to deliver our clients as well as candidates an overwhelming recruitment service experience grounded on mutual conviction and professional principles with due economy.</p>
+            </div>
+        </div>
+    </section>
+    <!-- End About Section Three -->
+
+    {% include 'frontend/include/testimonial.html' %}
+
+    <!-- Work Section -->
+    <section class="work-section style-two">
+        <div class="auto-container">
+            <div class="sec-title text-center">
+                <h2>Our Services</h2>
+                <div class="text">Expert solutions for all your business and hiring needs.</div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <!-- Work Block -->
+                <div class="work-block col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                        <figure class="image"><img src="{% static 'frontend/images/resource/work-1.png' %}" alt=""></figure>
+                        <h5>Contract Staffing</h5>
+                        <p>Whether you need to fill one high-impact position or build a full project team, we're here to handle all the details from start to finish so you have the exact talent you need to achieve your business goals.</p>
+                    </div>
+                </div>
+                <!-- Work Block -->
+                <div class="work-block col-lg-4 col-md-6 col-sm-12">
+                    <div class="inner-box">
+                        <figure class="image"><img src="{% static 'frontend/images/resource/work-2.png' %}" alt=""></figure>
+                        <h5>Managed Services</h5>
+                        <p>No matter your specific IT or Technologies needs, our consultants are here to act as a true extension of your internal teams to usher your projects through from concept to implementation. We provide a flexible delivery model and scope management by utilizing a team based staffing model.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Work Section -->
+{% endblock content %}
+  
+
+
+
+{% block script %}
+    <script>
+        document.querySelector('.about__nav').classList.add('current')
+    </script>
+{% endblock script %}
+    

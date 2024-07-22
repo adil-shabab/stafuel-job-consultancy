@@ -1,0 +1,41 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block title %}
+  Blogs | Stafuel
+{% endblock title %}
+  
+
+
+{% block content %}
+
+    <!-- Blog Single -->
+    <section class="blog-single">
+        <div class="auto-container">
+            <div class="upper-box">
+                <h3>Keep your face always toward the sunshine - and shadows will fall behind you.</h3>
+                <ul class="post-info">
+                    <li> Alison Dawn</li>
+                    <li>August 31, 2021</li>
+                </ul>
+            </div>
+        </div>
+        <figure class="main-image"><img src="{% static 'frontend/images/resource/blog-single.jpg' %}" alt=""></figure>
+        <div class="auto-container">
+            <h4>Blog Description</h4>
+            <p>Aliquam hendrerit sollicitudin purus, quis rutrum mi accumsan nec. Quisque bibendum orci ac nibh facilisis, at malesuada orci congue. Nullam tempus sollicitudin cursus. Ut et adipiscing erat. Curabitur this is a text link libero tempus congue.</p>
+            <p>Duis mattis laoreet neque, et ornare neque sollicitudin at. Proin sagittis dolor sed mi elementum pretium. Donec et justo ante. Vivamus egestas sodales est, eu rhoncus urna semper eu. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer tristique elit lobortis purus bibendum, quis dictum metus mattis. Phasellus posuere felis sed eros porttitor mattis. Curabitur massa magna, tempor in blandit id, porta in ligula. Aliquam laoreet nisl massa, at interdum mauris sollicitudin et.</p>
+            <p>Duis mattis laoreet neque, et ornare neque sollicitudin at. Proin sagittis dolor sed mi elementum pretium. Donec et justo ante. Vivamus egestas sodales est, eu rhoncus urna semper eu. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer tristique elit lobortis purus bibendum, quis dictum metus mattis. Phasellus posuere felis sed eros porttitor mattis. Curabitur massa magna, tempor in blandit id, porta in ligula. Aliquam laoreet nisl massa, at interdum mauris sollicitudin et.</p>
+            <p>Duis mattis laoreet neque, et ornare neque sollicitudin at. Proin sagittis dolor sed mi elementum pretium. Donec et justo ante. Vivamus egestas sodales est, eu rhoncus urna semper eu. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer tristique elit lobortis purus bibendum, quis dictum metus mattis. Phasellus posuere felis sed eros porttitor mattis. Curabitur massa magna, tempor in blandit id, porta in ligula. Aliquam laoreet nisl massa, at interdum mauris sollicitudin et.</p>
+        </div>
+    </section>
+    <!-- End Blog Single -->
+{% endblock content %}
+  
+
+
+{% block script %}
+    <script>
+      document.querySelector('.blogs__nav').classList.add('current')
+    </script>
+{% endblock script %}

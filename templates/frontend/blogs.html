@@ -1,0 +1,68 @@
+{% extends 'frontend/base.html' %}
+{% load static %}
+
+{% block title %}
+  Blogs | Stafuel
+{% endblock title %}
+  
+
+
+{% block content %}
+
+    <!--Page Title-->
+    <section class="page-title">
+        <div class="auto-container">
+            <div class="title-outer">
+                <h1>Blog</h1>
+                <ul class="page-breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li>Blog</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!--End Page Title-->
+
+    <!-- Sidebar Page Container -->
+    <div class="sidebar-page-container">
+        <div class="auto-container">
+            <div class="row">
+                <!--Content Side-->
+                <div class="content-side col-lg-12 col-md-12 col-sm-12">
+                    <div class="blog-grid">
+                        <div class="row">
+                            <!-- News Block -->
+                            <div class="news-block col-lg-4 col-md-6 col-sm-12">
+                                <a href="{% url 'single_blog' %}">
+                                    <div class="inner-box">
+                                        <div class="image-box">
+                                            <figure class="image"><img src="{% static 'frontend/images/resource/news-1.jpg' %}" alt="" /></figure>
+                                        </div>
+                                        <div class="lower-content">
+                                            <ul class="post-meta">
+                                                <li><a href="#">August 31, 2021</a></li>
+                                            </ul>
+                                            <h3><a href="#">Attract Sales And Profits</a></h3>
+                                            <p class="text">A job ravenously while Far much that one rank beheld after outside....</p>
+                                            <a href="#" class="read-more">Read More <i class="fa fa-angle-right"></i></a>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- Add more news blocks as needed -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Sidebar Container -->
+{% endblock content %}
+  
+
+
+{% block script %}
+    <script>
+      document.querySelector('.blogs__nav').classList.add('current')
+    </script>
+{% endblock script %}
